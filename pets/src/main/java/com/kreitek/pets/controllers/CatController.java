@@ -3,16 +3,18 @@ package com.kreitek.pets.controllers;
 import com.kreitek.pets.Controller;
 import com.kreitek.pets.domain.Cat;
 import com.kreitek.pets.infraestructure.bd.DbService;
+import com.kreitek.pets.util.logging.Logger;
+import com.kreitek.pets.util.logging.LoggerFactory;
 
 import java.util.List;
 
 public class CatController implements Controller {
 
-    // TODO Logger declaration
+    private static final Logger logger = LoggerFactory.getConsoleLogger();
 
     @Override
     public String executePut(String petName, String ownerName, String telephone) {
-        // TODO logger.debug("CatController.executePut " + petName + "," + ownerName + "," + telephone);
+        logger.debug("CatController.executePut " + petName + "," + ownerName + "," + telephone);
         Cat cat = new Cat(petName, ownerName, telephone);
         DbService dbService = DbService.getInstance();
         dbService.addNewCat(cat);
@@ -21,7 +23,7 @@ public class CatController implements Controller {
 
     @Override
     public String executeGet() {
-        // TODO logger.debug("CatController.executeGet CATS");
+        logger.debug("CatController.executeGet CATS");
         DbService dbService = DbService.getInstance();
         List<Cat> cats = dbService.getCats();
         String response = "";

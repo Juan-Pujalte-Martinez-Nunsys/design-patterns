@@ -4,6 +4,6 @@ public class LoggerFactory {
     private LoggerFactory() {}
 
     public static Logger getConsoleLogger() {
-        return new ConsoleLogger();
+        return new OutputStreamLogger(System.out);
     }
 }

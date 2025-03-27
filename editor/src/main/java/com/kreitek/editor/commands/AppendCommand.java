@@ -18,6 +18,7 @@ public class AppendCommand extends ReceiverHistoryCommand<Document, Document.Mem
 
     @Override
     public void execute() {
+        mementos.push(receiver.save());
         receiver.append(text);
     }
 }

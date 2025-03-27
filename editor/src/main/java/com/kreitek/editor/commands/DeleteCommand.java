@@ -18,6 +18,7 @@ public class DeleteCommand extends ReceiverHistoryCommand<Document, Document.Mem
 
     @Override
     public void execute() {
+        mementos.push(receiver.save());
         receiver.delete(lineNumber);
     }
 }

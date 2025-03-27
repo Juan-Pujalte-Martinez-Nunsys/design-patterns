@@ -1,5 +1,9 @@
-package com.kreitek.editor;
+package com.kreitek.editor.editors;
 
+import com.kreitek.editor.ANSIColors;
+import com.kreitek.editor.Command;
+import com.kreitek.editor.Editor;
+import com.kreitek.editor.Printer;
 import com.kreitek.editor.commands.CommandFactory;
 import com.kreitek.editor.exceptions.BadCommandException;
 import com.kreitek.editor.exceptions.ExitException;

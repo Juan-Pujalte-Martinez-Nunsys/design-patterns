@@ -11,12 +11,13 @@ import java.util.Scanner;
 
 public class ConsoleEditor implements Runnable {
     private final Document document = new Document(new ArrayList<>());
+    private final DocumentPrinter documentPrinter = new DocumentPrinter(document, System.out);
     private final CommandFactory commandFactory = new CommandFactory(document, new History<>(new ArrayDeque<>()));
 
     @Override
     public void run() {
         do {
-            showDocumentLines(document.getDocumentLines());
+            documentPrinter.printDocument();
             showHelp();
 
             final var commandLine = waitForNewCommand();
@@ -31,22 +32,6 @@ public class ConsoleEditor implements Runnable {
                 break;
             }
         } while (true);
-    }
-
-    private void showDocumentLines(final List<String> document) {
-        if (document.size() > 0) {
-            setTextColor(ANSIColors.YELLOW.get());
-            printLnToConsole("START DOCUMENT ==>");
-            for (int index = 0; index < document.size(); index++) {
-                final var stringBuilder = "[" +
-                        index +
-                        "] " +
-                        document.get(index);
-                printLnToConsole(stringBuilder);
-            }
-            printLnToConsole("<== END DOCUMENT");
-            setTextColor(ANSIColors.RESET.get());
-        }
     }
 
     private String waitForNewCommand() {

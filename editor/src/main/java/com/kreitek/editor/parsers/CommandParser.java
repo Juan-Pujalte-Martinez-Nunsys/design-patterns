@@ -5,7 +5,7 @@ import com.kreitek.editor.exceptions.BadCommandException;
 
 import java.util.regex.Pattern;
 
-public class CommandParser implements Parser {
+public class CommandParser implements Parser<String, String[]> {
     @Override
     public String[] parse(final String commandLine) throws BadCommandException {
         if (isValidCommand(commandLine)) {

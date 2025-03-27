@@ -2,6 +2,6 @@ package com.kreitek.editor;
 
 import com.kreitek.editor.exceptions.BadCommandException;
 
-public interface Parser {
-    String[] parse(final String commandLine) throws BadCommandException;
+public interface Parser<I, O> {
+    O parse(final I input) throws BadCommandException;
 }

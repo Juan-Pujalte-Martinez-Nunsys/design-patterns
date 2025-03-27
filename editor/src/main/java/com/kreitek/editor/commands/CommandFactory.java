@@ -8,14 +8,14 @@ import com.kreitek.editor.exceptions.BadCommandException;
 import com.kreitek.editor.exceptions.ExitException;
 
 public class CommandFactory {
-    private final Parser commandParser;
+    private final Parser<String, String[]> commandParser;
     private final Document document;
     private final History<Document.Memento> mementos;
 
     public CommandFactory(
             final Document document,
             final History<Document.Memento> mementos,
-            final Parser commandParser
+            final Parser<String, String[]> commandParser
     ) {
         this.document = document;
         this.mementos = mementos;

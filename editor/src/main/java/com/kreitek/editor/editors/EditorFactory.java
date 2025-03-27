@@ -1,6 +1,7 @@
 package com.kreitek.editor.editors;
 
 import com.kreitek.editor.Document;
+import com.kreitek.editor.commands.CommandParser;
 import com.kreitek.editor.printers.DocumentPrinter;
 import com.kreitek.editor.Editor;
 import com.kreitek.editor.History;
@@ -13,7 +14,7 @@ public class EditorFactory {
     public Editor getConsoleEditor() {
         final var document = new Document(new ArrayList<>());
         final var documentPrinter = new DocumentPrinter(document, System.out);
-        final var commandFactory = new CommandFactory(document, new History<>(new ArrayDeque<>()));
+        final var commandFactory = new CommandFactory(document, new History<>(new ArrayDeque<>()), new CommandParser());
 
         return new ConsoleEditor(documentPrinter, commandFactory);
     }

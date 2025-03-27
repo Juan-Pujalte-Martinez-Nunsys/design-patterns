@@ -7,16 +7,18 @@ import com.kreitek.editor.exceptions.BadCommandException;
 import com.kreitek.editor.exceptions.ExitException;
 
 public class CommandFactory {
-    private static final CommandParser commandParser = new CommandParser();
+    private final CommandParser commandParser;
     private final Document document;
     private final History<Document.Memento> mementos;
 
     public CommandFactory(
             final Document document,
-            final History<Document.Memento> mementos
+            final History<Document.Memento> mementos,
+            final CommandParser commandParser
     ) {
         this.document = document;
         this.mementos = mementos;
+        this.commandParser = commandParser;
     }
 
     public Command getCommand(final String commandLine) throws BadCommandException, ExitException {

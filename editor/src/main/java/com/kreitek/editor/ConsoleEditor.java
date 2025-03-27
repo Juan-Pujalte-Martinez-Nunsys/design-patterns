@@ -3,9 +3,10 @@ package com.kreitek.editor;
 import com.kreitek.editor.commands.CommandFactory;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
-public class ConsoleEditor implements Editor {
+public class ConsoleEditor implements Editor, Originator<ConsoleEditor.Memento> {
     public static final String TEXT_RESET = "\u001B[0m";
     public static final String TEXT_BLACK = "\u001B[30m";
     public static final String TEXT_RED = "\u001B[31m";
@@ -84,4 +85,21 @@ public class ConsoleEditor implements Editor {
         System.out.print(message);
     }
 
+    @Override
+    public Memento save() {
+        return new Memento(documentLines);
+    }
+
+    @Override
+    public void restore(final Memento memento) {
+        documentLines = memento.documentLines;
+    }
+
+    public static class Memento {
+        private final ArrayList<String> documentLines;
+
+        private Memento(final List<String> documentLines) {
+            this.documentLines = new ArrayList<>(documentLines);
+        }
+    }
 }

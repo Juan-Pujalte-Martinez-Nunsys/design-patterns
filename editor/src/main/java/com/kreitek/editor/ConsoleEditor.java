@@ -4,15 +4,22 @@ import com.kreitek.editor.commands.CommandFactory;
 import com.kreitek.editor.exceptions.BadCommandException;
 import com.kreitek.editor.exceptions.ExitException;
 
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.List;
+import java.io.PrintStream;
 import java.util.Scanner;
 
-public class ConsoleEditor implements Runnable {
-    private final Document document = new Document(new ArrayList<>());
-    private final DocumentPrinter documentPrinter = new DocumentPrinter(document, System.out);
-    private final CommandFactory commandFactory = new CommandFactory(document, new History<>(new ArrayDeque<>()));
+public class ConsoleEditor extends Editor {
+    private final DocumentPrinter documentPrinter;
+    private final CommandFactory commandFactory;
+    private final Scanner scanner;
+    private final PrintStream printStream;
+
+    public ConsoleEditor(final DocumentPrinter documentPrinter, final CommandFactory commandFactory) {
+        super(System.in, System.out);
+        this.documentPrinter = documentPrinter;
+        this.commandFactory = commandFactory;
+        this.scanner = new Scanner(inputStream);
+        this.printStream = new PrintStream(outputStream);
+    }
 
     @Override
     public void run() {
@@ -36,7 +43,6 @@ public class ConsoleEditor implements Runnable {
 
     private String waitForNewCommand() {
         printToConsole("Enter a command : ");
-        final var scanner = new Scanner(System.in);
         return scanner.nextLine();
     }
 
@@ -53,14 +59,14 @@ public class ConsoleEditor implements Runnable {
     }
 
     private void setTextColor(final String color) {
-        System.out.println(color);
+        printStream.println(color);
     }
 
     private void printLnToConsole(final String message) {
-        System.out.println(message);
+        printStream.println(message);
     }
 
     private void printToConsole(final String message) {
-        System.out.print(message);
+        printStream.print(message);
     }
 }

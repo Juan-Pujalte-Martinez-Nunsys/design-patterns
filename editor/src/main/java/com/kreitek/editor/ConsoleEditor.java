@@ -15,20 +15,22 @@ public class ConsoleEditor implements Runnable {
 
     @Override
     public void run() {
-        boolean exit = false;
-        while (!exit) {
+        do {
+            showDocumentLines(document.getDocumentLines());
+            showHelp();
+
             final var commandLine = waitForNewCommand();
+
             try {
                 Command command = commandFactory.getCommand(commandLine);
                 command.execute();
             } catch (final BadCommandException e) {
                 printErrorToConsole("Bad command");
             } catch (final ExitException e) {
-                exit = true;
+                System.out.println("Exiting...");
+                break;
             }
-            showDocumentLines(document.getDocumentLines());
-            showHelp();
-        }
+        } while (true);
     }
 
     private void showDocumentLines(final List<String> document) {

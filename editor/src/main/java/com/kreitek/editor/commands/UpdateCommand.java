@@ -1,23 +1,26 @@
 package com.kreitek.editor.commands;
 
 import com.kreitek.editor.Command;
+import com.kreitek.editor.Document;
+import com.kreitek.editor.History;
 
-import java.util.ArrayList;
-
-public class UpdateCommand implements Command {
-    private final String text;
+public class UpdateCommand extends Command<Document, Document.Memento> {
     private final int lineNumber;
+    private final String line;
 
-    public UpdateCommand(String text, int lineNumber) {
-        this.text = text;
+    public UpdateCommand(
+            final Document document,
+            final History<Document.Memento> mementos,
+            final int lineNumber,
+            final String line
+    ) {
+        super(document, mementos);
         this.lineNumber = lineNumber;
+        this.line = line;
     }
 
     @Override
-    public void execute(ArrayList<String> documentLines) {
-        if (documentLines.size() > lineNumber)
-            documentLines.set(lineNumber, text);
-        else
-            documentLines.add(text);
+    public void execute() {
+        receiver.update(lineNumber, line);
     }
 }

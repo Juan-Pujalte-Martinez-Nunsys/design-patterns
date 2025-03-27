@@ -4,6 +4,16 @@ import com.kreitek.editor.*;
 
 public class CommandFactory {
     private static final CommandParser commandParser = new CommandParser();
+    private final Document document;
+    private final History<Document.Memento> mementos;
+
+    public CommandFactory(
+            final Document document,
+            final History<Document.Memento> mementos
+    ) {
+        this.document = document;
+        this.mementos = mementos;
+    }
 
     public Command getCommand(String commandLine) throws BadCommandException, ExitException {
         String[] args = commandParser.parse(commandLine);
@@ -18,21 +28,21 @@ public class CommandFactory {
 
     private Command createUndoCommand() {
         // TODO create undo command
-        return null;
+        return new UndoCommand(document, mementos);
     }
 
     private Command createDeleteCommand(String lineNumber) {
         int number = Integer.parseInt(lineNumber);
-        return new DeleteCommand(number);
+        return new DeleteCommand(document, mementos, number);
     }
 
-    private Command createUpdateCommand(String lineNumber, String text) {
+    private Command createUpdateCommand(String lineNumber, String line) {
         int number = Integer.parseInt(lineNumber);
-        return new UpdateCommand(text, number);
+        return new UpdateCommand(document, mementos, number, line);
     }
 
-    private Command createAppendCommand(String text) {
-        return new AppendCommand(text);
+    private Command createAppendCommand(String line) {
+        return new AppendCommand(document, mementos, line);
     }
 
 }

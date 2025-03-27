@@ -1,7 +1,13 @@
 package com.kreitek.editor;
 
-import java.util.ArrayList;
+public abstract class Command<R, M> {
+    protected final R receiver;
+    protected final History<M> mementos;
 
-public interface Command {
-    void execute(ArrayList<String> documentLines);
+    protected Command(final R receiver, final History<M> mementos) {
+        this.receiver = receiver;
+        this.mementos = mementos;
+    }
+
+    public abstract void execute();
 }

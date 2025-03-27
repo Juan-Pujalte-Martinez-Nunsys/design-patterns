@@ -1,18 +1,23 @@
 package com.kreitek.editor.commands;
 
 import com.kreitek.editor.Command;
+import com.kreitek.editor.Document;
+import com.kreitek.editor.History;
 
-import java.util.ArrayList;
-
-public class AppendCommand implements Command {
+public class AppendCommand extends Command<Document, Document.Memento> {
     private final String text;
 
-    public AppendCommand(String text) {
+    public AppendCommand(
+            final Document document,
+            final History<Document.Memento> mementos,
+            final String text
+    ) {
+        super(document, mementos);
         this.text = text;
     }
 
     @Override
-    public void execute(ArrayList<String> documentLines) {
-        documentLines.add(text);
+    public void execute() {
+        receiver.append(text);
     }
 }

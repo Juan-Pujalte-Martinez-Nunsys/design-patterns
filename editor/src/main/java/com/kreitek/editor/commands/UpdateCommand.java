@@ -1,10 +1,10 @@
 package com.kreitek.editor.commands;
 
-import com.kreitek.editor.Command;
+import com.kreitek.editor.ReceiverHistoryCommand;
 import com.kreitek.editor.Document;
 import com.kreitek.editor.History;
 
-public class UpdateCommand extends Command<Document, Document.Memento> {
+public class UpdateCommand extends ReceiverHistoryCommand<Document, Document.Memento> {
     private final int lineNumber;
     private final String line;
 

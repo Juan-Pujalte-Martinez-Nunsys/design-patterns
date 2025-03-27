@@ -1,12 +1,12 @@
 package com.kreitek.editor.commands;
 
-import com.kreitek.editor.Command;
+import com.kreitek.editor.ReceiverHistoryCommand;
 import com.kreitek.editor.Document;
 import com.kreitek.editor.History;
 
 import java.util.NoSuchElementException;
 
-public class UndoCommand extends Command<Document, Document.Memento> {
+public class UndoCommand extends ReceiverHistoryCommand<Document, Document.Memento> {
     public UndoCommand(
             final Document document,
             final History<Document.Memento> mementos

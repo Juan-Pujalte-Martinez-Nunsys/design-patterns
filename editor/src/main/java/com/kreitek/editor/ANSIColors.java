@@ -1,5 +1,6 @@
 package com.kreitek.editor;
 
+// Author: https://gist.github.com/arshshaikh06/2c74ae8c140ac4e810bb797bd5dc8279
 public enum ANSIColors {
     RESET("\033[0m"),
 

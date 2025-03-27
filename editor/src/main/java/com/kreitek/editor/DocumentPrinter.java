@@ -3,7 +3,7 @@ package com.kreitek.editor;
 import java.io.OutputStream;
 import java.io.PrintStream;
 
-public class DocumentPrinter {
+public class DocumentPrinter implements Printer {
     private final Document document;
     private final PrintStream printStream;
 
@@ -12,7 +12,8 @@ public class DocumentPrinter {
         this.printStream = new PrintStream(outputStream);
     }
 
-    public void printDocument() {
+    @Override
+    public void print() {
         final var lines = document.getDocumentLines();
         setColor(ANSIColors.YELLOW);
         printStream.println("START DOCUMENT ==>");

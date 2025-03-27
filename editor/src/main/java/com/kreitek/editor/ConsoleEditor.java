@@ -8,12 +8,12 @@ import java.io.PrintStream;
 import java.util.Scanner;
 
 public class ConsoleEditor extends Editor {
-    private final DocumentPrinter documentPrinter;
+    private final Printer documentPrinter;
     private final CommandFactory commandFactory;
     private final Scanner scanner;
     private final PrintStream printStream;
 
-    public ConsoleEditor(final DocumentPrinter documentPrinter, final CommandFactory commandFactory) {
+    public ConsoleEditor(final Printer documentPrinter, final CommandFactory commandFactory) {
         super(System.in, System.out);
         this.documentPrinter = documentPrinter;
         this.commandFactory = commandFactory;
@@ -24,7 +24,7 @@ public class ConsoleEditor extends Editor {
     @Override
     public void run() {
         do {
-            documentPrinter.printDocument();
+            documentPrinter.print();
             showHelp();
 
             final var commandLine = waitForNewCommand();

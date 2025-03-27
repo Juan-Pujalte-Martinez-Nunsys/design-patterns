@@ -10,16 +10,6 @@ import java.util.List;
 import java.util.Scanner;
 
 public class ConsoleEditor implements Runnable {
-    public static final String TEXT_RESET = "\u001B[0m";
-    public static final String TEXT_BLACK = "\u001B[30m";
-    public static final String TEXT_RED = "\u001B[31m";
-    public static final String TEXT_GREEN = "\u001B[32m";
-    public static final String TEXT_YELLOW = "\u001B[33m";
-    public static final String TEXT_BLUE = "\u001B[34m";
-    public static final String TEXT_PURPLE = "\u001B[35m";
-    public static final String TEXT_CYAN = "\u001B[36m";
-    public static final String TEXT_WHITE = "\u001B[37m";
-
     private final Document document = new Document(new ArrayList<>());
     private final CommandFactory commandFactory = new CommandFactory(document, new History<>(new ArrayDeque<>()));
 
@@ -43,7 +33,7 @@ public class ConsoleEditor implements Runnable {
 
     private void showDocumentLines(final List<String> document) {
         if (document.size() > 0) {
-            setTextColor(TEXT_YELLOW);
+            setTextColor(ANSIColors.YELLOW.get());
             printLnToConsole("START DOCUMENT ==>");
             for (int index = 0; index < document.size(); index++) {
                 final var stringBuilder = "[" +
@@ -53,7 +43,7 @@ public class ConsoleEditor implements Runnable {
                 printLnToConsole(stringBuilder);
             }
             printLnToConsole("<== END DOCUMENT");
-            setTextColor(TEXT_RESET);
+            setTextColor(ANSIColors.RESET.get());
         }
     }
 
@@ -70,9 +60,9 @@ public class ConsoleEditor implements Runnable {
     }
 
     private void printErrorToConsole(final String message) {
-        setTextColor(TEXT_RED);
+        setTextColor(ANSIColors.RED.get());
         printToConsole(message);
-        setTextColor(TEXT_RESET);
+        setTextColor(ANSIColors.RESET.get());
     }
 
     private void setTextColor(final String color) {

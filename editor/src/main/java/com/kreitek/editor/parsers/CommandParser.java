@@ -1,11 +1,12 @@
-package com.kreitek.editor.commands;
+package com.kreitek.editor.parsers;
 
+import com.kreitek.editor.Parser;
 import com.kreitek.editor.exceptions.BadCommandException;
 
 import java.util.regex.Pattern;
 
-public class CommandParser {
-
+public class CommandParser implements Parser {
+    @Override
     public String[] parse(final String commandLine) throws BadCommandException {
         if (isValidCommand(commandLine)) {
             return getArguments(commandLine);

@@ -3,18 +3,19 @@ package com.kreitek.editor.commands;
 import com.kreitek.editor.Command;
 import com.kreitek.editor.Document;
 import com.kreitek.editor.History;
+import com.kreitek.editor.Parser;
 import com.kreitek.editor.exceptions.BadCommandException;
 import com.kreitek.editor.exceptions.ExitException;
 
 public class CommandFactory {
-    private final CommandParser commandParser;
+    private final Parser commandParser;
     private final Document document;
     private final History<Document.Memento> mementos;
 
     public CommandFactory(
             final Document document,
             final History<Document.Memento> mementos,
-            final CommandParser commandParser
+            final Parser commandParser
     ) {
         this.document = document;
         this.mementos = mementos;

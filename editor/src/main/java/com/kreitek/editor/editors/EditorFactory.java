@@ -1,7 +1,7 @@
 package com.kreitek.editor.editors;
 
 import com.kreitek.editor.Document;
-import com.kreitek.editor.commands.CommandParser;
+import com.kreitek.editor.parsers.CommandParser;
 import com.kreitek.editor.printers.DocumentPrinter;
 import com.kreitek.editor.Editor;
 import com.kreitek.editor.History;

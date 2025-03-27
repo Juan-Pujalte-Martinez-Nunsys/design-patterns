@@ -1,5 +1,9 @@
-package com.kreitek.editor;
+package com.kreitek.editor.editors;
 
+import com.kreitek.editor.Document;
+import com.kreitek.editor.printers.DocumentPrinter;
+import com.kreitek.editor.Editor;
+import com.kreitek.editor.History;
 import com.kreitek.editor.commands.CommandFactory;
 
 import java.util.ArrayDeque;

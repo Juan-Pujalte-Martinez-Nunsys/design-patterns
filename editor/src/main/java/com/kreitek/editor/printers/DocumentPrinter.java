@@ -1,4 +1,8 @@
-package com.kreitek.editor;
+package com.kreitek.editor.printers;
+
+import com.kreitek.editor.ANSIColors;
+import com.kreitek.editor.Document;
+import com.kreitek.editor.Printer;
 
 import java.io.OutputStream;
 import java.io.PrintStream;

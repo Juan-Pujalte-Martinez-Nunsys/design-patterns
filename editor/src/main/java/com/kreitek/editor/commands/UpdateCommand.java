@@ -21,7 +21,7 @@ public class UpdateCommand extends ReceiverHistoryCommand<Document, Document.Mem
 
     @Override
     public void execute() {
-        mementos.push(receiver.save());
+        history.push(receiver.save());
         receiver.update(lineNumber, line);
     }
 }

@@ -18,7 +18,7 @@ public class UndoCommand extends ReceiverHistoryCommand<Document, Document.Memen
     public void execute() {
         final Document.Memento memento;
         try {
-            memento = mementos.pop();
+            memento = history.pop();
         } catch (final NoSuchElementException e) {
             return;
         }

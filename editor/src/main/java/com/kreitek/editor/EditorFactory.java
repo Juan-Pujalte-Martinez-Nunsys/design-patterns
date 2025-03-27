@@ -1,7 +1,7 @@
 package com.kreitek.editor;
 
 public class EditorFactory {
-    public Editor getEditor() {
+    public Runnable getConsoleEditor() {
         return new ConsoleEditor();
     }
 }

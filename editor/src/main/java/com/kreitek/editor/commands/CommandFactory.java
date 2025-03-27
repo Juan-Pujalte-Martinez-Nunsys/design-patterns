@@ -1,6 +1,10 @@
 package com.kreitek.editor.commands;
 
-import com.kreitek.editor.*;
+import com.kreitek.editor.Command;
+import com.kreitek.editor.Document;
+import com.kreitek.editor.History;
+import com.kreitek.editor.exceptions.BadCommandException;
+import com.kreitek.editor.exceptions.ExitException;
 
 public class CommandFactory {
     private static final CommandParser commandParser = new CommandParser();
@@ -15,8 +19,8 @@ public class CommandFactory {
         this.mementos = mementos;
     }
 
-    public Command getCommand(String commandLine) throws BadCommandException, ExitException {
-        String[] args = commandParser.parse(commandLine);
+    public Command getCommand(final String commandLine) throws BadCommandException, ExitException {
+        final var args = commandParser.parse(commandLine);
         return switch (args[0]) {
             case "a" -> createAppendCommand(args[1]);
             case "u" -> createUpdateCommand(args[1], args[2]);
@@ -27,22 +31,20 @@ public class CommandFactory {
     }
 
     private Command createUndoCommand() {
-        // TODO create undo command
         return new UndoCommand(document, mementos);
     }
 
-    private Command createDeleteCommand(String lineNumber) {
-        int number = Integer.parseInt(lineNumber);
+    private Command createDeleteCommand(final String lineNumber) {
+        final var number = Integer.parseInt(lineNumber);
         return new DeleteCommand(document, mementos, number);
     }
 
-    private Command createUpdateCommand(String lineNumber, String line) {
-        int number = Integer.parseInt(lineNumber);
+    private Command createUpdateCommand(final String lineNumber, final String line) {
+        final var number = Integer.parseInt(lineNumber);
         return new UpdateCommand(document, mementos, number, line);
     }
 
     private Command createAppendCommand(String line) {
         return new AppendCommand(document, mementos, line);
     }
-
 }

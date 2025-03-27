@@ -5,20 +5,20 @@ import com.kreitek.editor.Document;
 import com.kreitek.editor.History;
 
 public class AppendCommand extends ReceiverHistoryCommand<Document, Document.Memento> {
-    private final String text;
+    private final String line;
 
     public AppendCommand(
             final Document document,
             final History<Document.Memento> mementos,
-            final String text
+            final String line
     ) {
         super(document, mementos);
-        this.text = text;
+        this.line = line;
     }
 
     @Override
     public void execute() {
-        mementos.push(receiver.save());
-        receiver.append(text);
+        history.push(receiver.save());
+        receiver.append(line);
     }
 }

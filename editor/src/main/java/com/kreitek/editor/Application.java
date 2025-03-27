@@ -3,8 +3,8 @@ package com.kreitek.editor;
 public class Application {
 
     public static void main(String[] args) {
-        EditorFactory editorFactory = new EditorFactory();
-        Editor editor = editorFactory.getEditor();
+        final var editorFactory = new EditorFactory();
+        final var editor = editorFactory.getConsoleEditor();
         editor.run();
     }
 

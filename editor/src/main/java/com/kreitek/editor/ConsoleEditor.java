@@ -101,5 +101,9 @@ public class ConsoleEditor implements Editor, Originator<ConsoleEditor.Memento> 
         private Memento(final List<String> documentLines) {
             this.documentLines = new ArrayList<>(documentLines);
         }
+
+        public ArrayList<String> getDocumentLines() {
+            return documentLines;
+        }
     }
 }
